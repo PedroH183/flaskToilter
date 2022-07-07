@@ -1,0 +1,11 @@
+o Venv serve para criar um ambiente virtual que isole o projeto, 
+é uma maneira de organizar melhor as libs usadas em qualquer projeto..
+
+pip install -r requirements.txt 
+# instala todas as bibliotecas que serão utilizadas 
+(é pra ser usada para terceiros poderem instalar todas as lib de 
+forma automatica)
+o menos r (-r) significa read  
+
+ORM - são usadas para facilitar a comunicação com o banco de dados
+a localização do db (database é um )
