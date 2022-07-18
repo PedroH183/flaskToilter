@@ -17,3 +17,8 @@ os __init__ dentro de cada pasta definem um módulo
 
 todas vez que há uma mudança na estrutura do banco de dados é necessário migrar ele 
 a pasta migrations armazena todas as mudanças que ocorreram no banco de dados
+
+existe uma diferença entre URI e URL, URI É um indentificador universal de recurso pode ser uma imagem, um numero 
+A URI no contexto web UNE O https:// com a url o site, indefificando-o assim.
+
+URL É o localizador de recurso universal que no contexto web é ele quem fornece o local para acessar certo dominio. 
