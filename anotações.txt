@@ -9,3 +9,11 @@ o menos r (-r) significa read
 
 ORM - são usadas para facilitar a comunicação com o banco de dados
 a localização do db (database é um )
+
+
+pesquisar os parametros permitidos no sqlAlchemy ( na área da definição de colunas )
+
+os __init__ dentro de cada pasta definem um módulo 
+
+todas vez que há uma mudança na estrutura do banco de dados é necessário migrar ele 
+a pasta migrations armazena todas as mudanças que ocorreram no banco de dados
