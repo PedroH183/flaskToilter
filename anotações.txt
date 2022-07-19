@@ -22,3 +22,19 @@ existe uma diferença entre URI e URL, URI É um indentificador universal de rec
 A URI no contexto web UNE O https:// com a url o site, indefificando-o assim.
 
 URL É o localizador de recurso universal que no contexto web é ele quem fornece o local para acessar certo dominio. 
+
+geralmente é usada vários arquivos de configurações para diferentes situações( produção, desenvolvimento ...) nesse caso
+só foi utilizado uma configuração.
+
+O decorator pode receber variaveis Ex::
+@app.route('/home/<nome>'):
+    def exemplo(nome):
+        return "Olá !!, %s" % nome
+
+methods no decator route é uma limitação dos métodos possíveis de serem
+utlizados 
+
+a lib Jinga é que permite a execução de comandos python dentro do html 
+é necessário passar as variveis que serão utilizadas no render_template
+
+por padrão a unica pasta acessível por meio do flask é a static
