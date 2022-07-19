@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Home Page</title>
+        <link rel = 'stylesheet' href = '{{ url_for("static", 
+        filename = "css/bootstrap.min.css") }}'>
+        
+    </head>
+
+    <body>
+        <h1>Lista de conteudo</h1>
+        <ol>
+            <li> Banana </li>
+            <li> Banana </li>
+            <li> Egg </li>
+        </ol>
+        {% if user %}
+        <h3>Bem vindo a home page <b>{{user}}<b> !</h3>
+        {% else %}
+        <h3>Bem vindo a home page user!</h3>
+        {% endif %}
+    </body>
+    <script source = "{{ url_for('static', filename = 'js/bootstrap.min.js') }}"></script>
+</html>
