@@ -3,8 +3,13 @@ from app import app
 
 @app.route('/home/<user>')
 @app.route('/home', defaults = {'user':None})
-def index(user):
+def home(user):
     return render_template('home.html', user = user) # o flask vai buscar por padrão dentro dentro da pasta template
+
+@app.route('/home/base/')
+def perfil():
+    return render_template('base.html')
+
 
 """
 @app.route("/home", defaults = {'name':None}, methods = ['GET'])
