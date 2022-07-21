@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class = "jumbotron text-center">
+    <div class="container">
+    <form action = "" method = "post">
+        {{ form.csrf_token }}
+
+        <div class ="form-group" align = "left">
+            <label><b>Username:</b></label>
+        
+            {{ form.username(class = "form-control ", placeholder = "Digite seu Username", id="exampleInputEmail1", type="email") }}
+            {% if form.errors.username %}
+        
+            {% for err in form.errors.username %}
+            <ul>
+                <li>{{ err }}</li>
+            </ul>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+        <div class = "form-group" align = "left">
+            <label><b>Password:</b></label>
+            
+            {{ form.password(class = "form-control", placeholder = "Digite sua Senha") }}
+            {% if form.errors.password %}
+            
+            {% for err in form.errors.password %}
+            <ul>
+                <li>{{ err }}</li>
+            </ul>
+            {% endfor %}
+            {% endif %}
+        
+        </div>
+        
+        <br>
+        
+        <div class = "checkbox">
+            <label>
+                {{ form.remember_me}} Remember-me?
+            </label>
+        </div>
+        <button type = "submit" class = "btn-primary mb-4">Login</button>
+    </form>
+</div>
+</div>
+{% endblock %}
