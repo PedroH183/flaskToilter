@@ -1,7 +1,8 @@
 from flask import render_template
-from app import app
-from app.models.forms import LoginForm
+from app import app,db
 
+from app.models.forms import LoginForm
+from app.models.tables import User
 
 @app.route('/home/')
 def tentando():
@@ -20,20 +21,10 @@ def home():
 
     return render_template('login.html', form = form) # o flask vai buscar por padrão dentro dentro da pasta template
 
+@app.route('/teste/<info>')
+@app.route('/teste/', defaults = {'info':None} )
+def teste(info): # primeira operação é a operação 
+    red = User.query.filter_by(name = "pedro henrique").all()
+    print(red)
+    return "Ok"
 
-"""
-@app.route("/home", defaults = {'name':None}, methods = ['GET'])
-@app.route('/home/<name>')
-def test(name = None):
-    if name:
-        return "Olá meu nobre alcunhado como <b> %s <b>" % name.title()
-    else:
-        return "Olá anonimo user !"
-
-@app.route("/home/<int:id>")
-def teste(id = 0):
-    if id:
-        return "Olá user de id %d !" % id
-    else:
-        return "Olá user sem id ! "
-"""

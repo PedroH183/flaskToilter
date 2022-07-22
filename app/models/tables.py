@@ -4,17 +4,18 @@ class User(db.Model): # todas as classes são heranças de DB.MODEL
     __tablename__ = "users" # parametro especial para denominar a tabela
 
     id = db.Column(db.Integer, primary_key = True )
-    username = db.Column(db.String, unique = True )
-    email = db.Column(db.String, unique = True)   
+    username = db.Column(db.String, unique = True, nullable = False)
+    email = db.Column(db.String, unique = True, nullable = False)
     password = db.Column(db.String)
     name = db.Column(db.String)
     
 
     def __init__(self, username, password, name, email):
         self.username = username
+        self.email = email
         self.password = password
         self.name = name
-        self.email = email
+        
 
     def __repr__(self):
         return "<User %r>" % self.username # %r == converte em string, mas é usada para representar um objeto em python 
