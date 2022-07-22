@@ -27,14 +27,12 @@ def login():
 def teste(nome): # primeira operação é a operação 
     
     if nome is not None:
-        data = User.query.filter_by(username = nome.title()).first()
+        data = User.query.filter_by(username = nome.title() ).first()
+        return render_template('home.html', users = data.username.title() )
     else:
         data = User.query.filter_by(username = "").first()
-
-    if data is not None:
-        return render_template('home.html', users = data.username.title() )
-    else: 
         return render_template('home.html', users = "")
+
 
 # data = User.query.filter_by(campo = value ).first()
 # db.session.delete(data) # para apagar um valor 
