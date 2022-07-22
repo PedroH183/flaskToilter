@@ -38,3 +38,18 @@ a lib Jinga é que permite a execução de comandos python dentro do html
 é necessário passar as variveis que serão utilizadas no render_template
 
 por padrão a unica pasta acessível por meio do flask é a static
+
+para fazer uma consulta no DB é necessário utilizar na função da rota : Class.filter_by(campos = alguma coisa).all()
+// o que faz esse método .all() -- > return == list
+
+o método .firts() é usado depois de class.filter_by(campos = alguma coisa).first()
+// ele retorna a primeira validação congruente à query 
+
+se eu acessar um valor dessa lista (.all() )consiguirei fazer o mesmo que o método .first()?
+// pesquisar os métodos para passar como parametro nas query ( site do sqlAlchemy select, delete, insert )
+
+o método update funciona em 2 passos : 
+    -primeiro seleciona o dado ( é indicável utilizar um campo unico com o method .first() ) 
+    -pega o retorna do primeiro passo e modifica (fazer atribuições )
+
+pesquisar como funciona o delete

@@ -9,7 +9,6 @@ class User(db.Model): # todas as classes são heranças de DB.MODEL
     password = db.Column(db.String)
     name = db.Column(db.String)
     
-
     def __init__(self, username, password, name, email):
         self.username = username
         self.email = email
