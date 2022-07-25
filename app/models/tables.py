@@ -1,4 +1,5 @@
-from app import db
+from smtplib import LMTP
+from app import db,lm
 
 class User(db.Model): # todas as classes são heranças de DB.MODEL
     __tablename__ = "users" # parametro especial para denominar a tabela
@@ -9,6 +10,25 @@ class User(db.Model): # todas as classes são heranças de DB.MODEL
     password = db.Column(db.String)
     name = db.Column(db.String)
     
+    @property
+    def is_authenticated(self):
+        return True
+    
+    @property
+    def is_active(self):
+        return True
+    
+    @property
+    def is_anonymous(self):
+        return False
+    
+    def get_id(self):
+        return str(self.id)
+
+    @lm.user_loader
+    def load_user(user_id):
+        return User.get(user_id)
+
     def __init__(self, username, password, name, email):
         self.username = username
         self.email = email

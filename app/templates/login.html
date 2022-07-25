@@ -9,7 +9,7 @@
         <div class ="form-group" align = "left">
             <label><b>Username:</b></label>
         
-            {{ form.username(class = "form-control ", placeholder = "Digite seu Username", id="exampleInputEmail1", type="email") }}
+            {{ form.username(class = "form-control ", placeholder = "Digite seu Username") }}
             {% if form.errors.username %}
         
             {% for err in form.errors.username %}

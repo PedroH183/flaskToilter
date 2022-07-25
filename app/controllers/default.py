@@ -1,30 +1,37 @@
-from flask import render_template
-from app import app,db
+from flask import flash, redirect, render_template, redirect, url_for
+from app import app,lm
+from flask_login import login_user,logout_user
 
 from app.models.forms import LoginForm
 from app.models.tables import User
 
-@app.route('/home/')
-def home():
-    return render_template('home.html')
-
+@lm.user_loader
+def load_user(id):
+        return User.query.filter_by(id = id).first()
 
 @app.route('/login/', methods = ["Get","Post"])
 def login():
     form = LoginForm()
     
     if form.validate_on_submit():
-        print(form.username.data)
-        print(form.password.data)
+
+        user_lo = User.query.filter_by(username = form.username.data.title()).first()
+
+        if user_lo and (user_lo.password == form.password.data):
+            login_user(user_lo)
+            flash("Logged in ")
+            return redirect(url_for("home"))   # home é o nome da função 
+        else:
+            flash("Invalid Login")
     else:
         print(form.errors)
 
     return render_template('login.html', form = form) # o flask vai buscar por padrão dentro dentro da pasta template
 
 
-@app.route('/teste/<nome>')
-@app.route('/teste/', defaults = {'nome' : None})
-def teste(nome): # primeira operação é a operação 
+@app.route('/home/<nome>')
+@app.route('/home/', defaults = {'nome' : None}, methods = ["GET"])
+def home(nome): # primeira operação é a operação 
     
     if nome is not None:
         data = User.query.filter_by(username = nome.title() ).first()
@@ -32,6 +39,11 @@ def teste(nome): # primeira operação é a operação
     else:
         data = User.query.filter_by(username = "").first()
         return render_template('home.html', users = "")
+
+@app.route("/logout")
+def loggout():
+    logout_user()
+    return redirect(url_for("login"))
 
 
 # data = User.query.filter_by(campo = value ).first()
