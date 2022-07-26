@@ -9,6 +9,11 @@ from app.models.tables import User
 def load_user(id):
         return User.query.filter_by(id = id).first()
 
+@app.route('/signup/', methods = ["Get","Post"])
+def signup():
+    form = 
+
+
 @app.route('/login/', methods = ["Get","Post"])
 def login():
     form = LoginForm()

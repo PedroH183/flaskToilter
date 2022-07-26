@@ -1,5 +1,6 @@
 env
-
 app/__pycache__
-app/static
+app/controllers/__pycache__
+app/models/__pycache__
+
 
