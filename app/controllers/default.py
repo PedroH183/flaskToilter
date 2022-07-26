@@ -1,17 +1,36 @@
 from flask import flash, redirect, render_template, redirect, url_for
-from app import app,lm
+from app import app,lm,db
 from flask_login import login_user,logout_user
 
-from app.models.forms import LoginForm
+from app.models.forms import LoginForm, SignupForm
 from app.models.tables import User
 
 @lm.user_loader
 def load_user(id):
         return User.query.filter_by(id = id).first()
 
+
 @app.route('/signup/', methods = ["Get","Post"])
 def signup():
-    form = 
+    form = SignupForm()
+
+    if form.validate_on_submit():
+        user_nm = User.query.filter_by(username = form.username.data.title()).first()
+        email_nm = User.query.filter_by(email = form.email.data).first()
+
+        if (not user_nm or not email_nm):
+
+            sign_valid = User(form.username.data,form.password.data,form.name.data,form.email.data)
+            db.session.add(sign_valid)
+            db.session.commit()
+            return redirect(url_for("home"))
+
+        else:
+            flash("Repeted information")
+    else:
+        print(form.errors)
+
+    return render_template("signup.html", form=form)
 
 
 @app.route('/login/', methods = ["Get","Post"])
