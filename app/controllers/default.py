@@ -15,10 +15,11 @@ def signup():
     form = SignupForm()
 
     if form.validate_on_submit():
-        user_nm = User.query.filter_by(username = form.username.data.title()).first()
+        user_nm = User.query.filter_by(username = form.username.data).first()
         email_nm = User.query.filter_by(email = form.email.data).first()
 
-        if (not user_nm or not email_nm):
+        if (not user_nm and not email_nm):
+            # possible erro of integritary 
 
             sign_valid = User(form.username.data,form.password.data,form.name.data,form.email.data)
             db.session.add(sign_valid)
@@ -39,7 +40,7 @@ def login():
     
     if form.validate_on_submit():
 
-        user_lo = User.query.filter_by(username = form.username.data.title()).first()
+        user_lo = User.query.filter_by(username = form.username.data).first()
 
         if user_lo and (user_lo.password == form.password.data):
             login_user(user_lo)
@@ -53,16 +54,9 @@ def login():
     return render_template('login.html', form = form) # o flask vai buscar por padrão dentro dentro da pasta template
 
 
-@app.route('/home/<nome>')
-@app.route('/home/', defaults = {'nome' : None}, methods = ["GET"])
-def home(nome): # primeira operação é a operação 
-    
-    if nome is not None:
-        data = User.query.filter_by(username = nome.title() ).first()
-        return render_template('home.html', users = data.username.title() )
-    else:
-        data = User.query.filter_by(username = "").first()
-        return render_template('home.html', users = "")
+@app.route('/home/', methods = ["GET"])
+def home(): # primeira operação é a operação 
+    return render_template('home.html')
 
 @app.route("/logout")
 def loggout():
