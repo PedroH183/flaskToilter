@@ -1,4 +1,3 @@
-from smtplib import LMTP
 from app import db,lm
 
 class User(db.Model): # todas as classes são heranças de DB.MODEL
